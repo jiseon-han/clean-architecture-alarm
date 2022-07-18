@@ -6,13 +6,12 @@ export default function Alarm() {
   const { updateAlarm } = useSetAlarm();
 
   const handleClick = () => {
-    console.log('alarm', alarm);
     updateAlarm(alarm);
   };
 
   return (
     <label className="switch">
-      <input type="checkbox" onClick={handleClick} checked={alarm?.isOn} />
+      <input type="checkbox" onChange={handleClick} checked={alarm?.isOn} />
       <span className="slider round"></span>
     </label>
   );

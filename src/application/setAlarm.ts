@@ -8,10 +8,10 @@ export function useSetAlarm() {
   const alarmStorage: AlarmStorageService = useAlarmStorage();
 
   function updateAlarm(alarm: Alarm): void {
+    const futureStatus = alarm.isOn ? '해제' : '설정';
     try {
-      console.log(alarm, alarmStorage, alarmStorage.alarm);
       alarmStorage.updateAlarm(alarm);
-      notifier.notify('알람이 설정되었습니다.');
+      notifier.notify(`알람이 ${futureStatus}되었습니다.`);
     } catch (e) {
       console.log(e);
       notifier.notify('알람 설정중 문제가 발생했습니다.');
