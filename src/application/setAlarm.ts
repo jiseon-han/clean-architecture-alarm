@@ -1,4 +1,4 @@
-import { Alarm } from '../domain/alarm';
+import { Alarm, createAlarm } from '../domain/alarm';
 import { useNotifier } from '../services/notificationAdapter';
 import { useAlarmStorage } from '../services/storageAdapter';
 import { NotificationService, AlarmStorageService } from './ports';
@@ -18,5 +18,17 @@ export function useSetAlarm() {
     }
   }
 
-  return { updateAlarm };
+  function addAlarm(): Alarm | undefined {
+    try {
+      const alarm = createAlarm();
+      alarmStorage.addAlarm(alarm);
+      notifier.notify(`알람이 생성되었습니다.`);
+      return alarm;
+    } catch (e) {
+      console.log(e);
+      notifier.notify('알람 생성 중 문제가 발생했습니다.');
+    }
+  }
+
+  return { addAlarm, updateAlarm };
 }

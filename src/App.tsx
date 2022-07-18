@@ -1,14 +1,13 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Alarm from './ui/components/Alarm';
+import AlarmList from './ui/AlarmList';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h3>Alarm</h3>
-        <Alarm />
+        <AlarmList />
       </header>
     </div>
   );

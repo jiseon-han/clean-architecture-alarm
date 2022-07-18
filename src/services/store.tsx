@@ -6,12 +6,17 @@ const StoreContext = React.createContext<any>({});
 export const useStore = () => useContext(StoreContext);
 
 export function Provider({ children }: { children: React.ReactNode }) {
-  const [alarm, setAlarm] = useState<Alarm>({ isOn: false });
+  const [alarms, setAlarms] = useState<Alarm[]>([]);
 
   const value = {
-    alarm,
-    updateAlarm: (a: Alarm) => setAlarm({ isOn: !a.isOn }),
+    alarms,
+    updateAlarm: (a: Alarm) => setAlarms(replaceAlarm(a, alarms)),
+    addAlarm: (a: Alarm) => setAlarms([...alarms, a]),
   };
 
   return <StoreContext.Provider value={value}>{children}</StoreContext.Provider>;
+}
+
+function replaceAlarm(alarm: Alarm, list: Alarm[]) {
+  return list.map((a) => (a.id === alarm.id ? { id: a.id, isOn: !a.isOn } : a));
 }

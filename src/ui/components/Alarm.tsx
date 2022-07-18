@@ -1,8 +1,7 @@
 import { useSetAlarm } from '../../application/setAlarm';
-import { useAlarmStorage } from '../../services/storageAdapter';
+import { Alarm } from '../../domain/alarm';
 
-export default function Alarm() {
-  const { alarm } = useAlarmStorage();
+export default function AlarmToggle({ alarm }: { alarm: Alarm }) {
   const { updateAlarm } = useSetAlarm();
 
   const handleClick = () => {

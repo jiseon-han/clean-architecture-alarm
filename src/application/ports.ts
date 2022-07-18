@@ -5,6 +5,7 @@ export interface NotificationService {
 }
 
 export interface AlarmStorageService {
-  alarm: Alarm;
+  alarms: Alarm[];
+  addAlarm(alarm: Alarm): void;
   updateAlarm(alarm: Alarm): void;
 }

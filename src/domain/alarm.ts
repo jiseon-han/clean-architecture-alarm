@@ -1,7 +1,7 @@
-type UniqueId = string;
+type UniqueId = number;
 
 export type Alarm = {
-  id?: UniqueId;
+  id: UniqueId;
   isOn: boolean;
 };
 
