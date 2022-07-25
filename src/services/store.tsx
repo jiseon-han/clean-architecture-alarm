@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useContext } from 'react';
-import { Alarm } from '../domain/alarm';
+import { Alarm, replaceAlarm } from '../domain/alarm';
+import { AlarmStorageService } from '../application/ports';
 
-const StoreContext = React.createContext<any>({});
+const StoreContext = React.createContext({} as AlarmStorageService);
 export const useStore = () => useContext(StoreContext);
 
 export function Provider({ children }: { children: React.ReactNode }) {
@@ -15,8 +16,4 @@ export function Provider({ children }: { children: React.ReactNode }) {
   };
 
   return <StoreContext.Provider value={value}>{children}</StoreContext.Provider>;
-}
-
-function replaceAlarm(alarm: Alarm, list: Alarm[]) {
-  return list.map((a) => (a.id === alarm.id ? { id: a.id, isOn: !a.isOn } : a));
 }

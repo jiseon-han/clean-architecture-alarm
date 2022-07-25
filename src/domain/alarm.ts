@@ -11,3 +11,7 @@ export function createAlarm() {
     isOn: true,
   };
 }
+
+export function replaceAlarm(alarm: Alarm, list: Alarm[]) {
+  return list.map((a) => (a.id === alarm.id ? { id: a.id, isOn: !a.isOn } : a));
+}
