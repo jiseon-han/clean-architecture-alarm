@@ -7,10 +7,10 @@ export function useSetAlarm() {
   const notifier: NotificationService = useNotifier();
   const alarmStorage: AlarmStorageService = useAlarmStorage();
 
-  function updateAlarm(alarm: Alarm): void {
+  function editAlarm(alarm: Alarm): void {
     const futureStatus = alarm.isOn ? '해제' : '설정';
     try {
-      alarmStorage.updateAlarm(alarm);
+      alarmStorage.editAlarm(alarm);
       notifier.notify(`알람이 ${futureStatus}되었습니다.`);
     } catch (e) {
       console.log(e);
@@ -30,5 +30,5 @@ export function useSetAlarm() {
     }
   }
 
-  return { addAlarm, updateAlarm };
+  return { addAlarm, editAlarm };
 }

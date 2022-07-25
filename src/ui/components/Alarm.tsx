@@ -2,10 +2,10 @@ import { useSetAlarm } from '../../application/setAlarm';
 import { Alarm } from '../../domain/alarm';
 
 export default function AlarmToggle({ alarm }: { alarm: Alarm }) {
-  const { updateAlarm } = useSetAlarm();
+  const { editAlarm } = useSetAlarm();
 
   const handleClick = () => {
-    updateAlarm(alarm);
+    editAlarm(alarm);
   };
 
   return (

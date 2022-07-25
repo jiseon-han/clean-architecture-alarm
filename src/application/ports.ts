@@ -7,5 +7,5 @@ export interface NotificationService {
 export interface AlarmStorageService {
   alarms: Alarm[];
   addAlarm(alarm: Alarm): void;
-  updateAlarm(alarm: Alarm): void;
+  editAlarm(alarm: Alarm): void;
 }

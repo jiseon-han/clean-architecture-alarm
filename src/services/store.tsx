@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useContext } from 'react';
-import { Alarm, replaceAlarm } from '../domain/alarm';
+import { Alarm, updateAlarm } from '../domain/alarm';
 import { AlarmStorageService } from '../application/ports';
 
 const StoreContext = React.createContext({} as AlarmStorageService);
@@ -11,7 +11,7 @@ export function Provider({ children }: { children: React.ReactNode }) {
 
   const value = {
     alarms,
-    updateAlarm: (a: Alarm) => setAlarms(replaceAlarm(a, alarms)),
+    editAlarm: (a: Alarm) => setAlarms(updateAlarm(a, alarms)),
     addAlarm: (a: Alarm) => setAlarms([...alarms, a]),
   };
 
