@@ -30,5 +30,15 @@ export function useSetAlarm() {
     }
   }
 
-  return { addAlarm, editAlarm };
+  function removeAlarm(alarm: Alarm): void {
+    try {
+      alarmStorage.removeAlarm(alarm);
+      notifier.notify(`[${alarm.id}] 알람이 삭제되었습니다.`);
+    } catch (e) {
+      console.log(e);
+      notifier.notify(`[${alarm.id}] 알람을 삭제하는데 문제가 발생했습니다.`);
+    }
+  }
+
+  return { addAlarm, editAlarm, removeAlarm };
 }

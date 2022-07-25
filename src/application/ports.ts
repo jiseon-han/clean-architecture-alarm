@@ -8,4 +8,5 @@ export interface AlarmStorageService {
   alarms: Alarm[];
   addAlarm(alarm: Alarm): void;
   editAlarm(alarm: Alarm): void;
+  removeAlarm(alarm: Alarm): void;
 }

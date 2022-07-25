@@ -5,7 +5,6 @@ export type Alarm = {
   isOn: boolean;
 };
 
-// 알람 리스트 중 해당 알람의 상태를 변경해주는 함수
 export function updateAlarm(alarm: Alarm, list: Alarm[]) {
   return list.map((a) => (a.id === alarm.id ? { id: a.id, isOn: !a.isOn } : a));
 }
@@ -15,4 +14,8 @@ export function createAlarm() {
     id: Date.now(),
     isOn: true,
   };
+}
+
+export function deleteAlarm(alarm: Alarm, list: Alarm[]) {
+  return list.filter((a) => a.id !== alarm.id);
 }
