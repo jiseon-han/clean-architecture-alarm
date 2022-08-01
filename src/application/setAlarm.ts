@@ -1,4 +1,6 @@
+import { User } from '../domain/user';
 import { Alarm, createAlarm } from '../domain/alarm';
+import { getAlarmsApi } from '../services/api';
 import { useNotifier } from '../services/notificationAdapter';
 import { useAlarmStorage } from '../services/storageAdapter';
 import { NotificationService, AlarmStorageService } from './ports';
@@ -40,5 +42,19 @@ export function useSetAlarm() {
     }
   }
 
-  return { addAlarm, editAlarm, removeAlarm };
+  async function initAlarms(user?: User) {
+    try {
+      if (user) {
+        const alarms = await getAlarmsApi(user);
+        alarmStorage.initAlarms(alarms);
+      } else {
+        alarmStorage.initAlarms([]);
+      }
+    } catch (e) {
+      console.log(e);
+      notifier.notify('알람을 불러오는 중 문제가 발생했습니다.');
+    }
+  }
+
+  return { addAlarm, editAlarm, removeAlarm, initAlarms };
 }
