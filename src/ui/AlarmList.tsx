@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { useSetAlarm } from '../application/setAlarm';
 
 import { useRouter } from '../services/routerAdapter';
+import Info from './components/Info';
 
 const AlarmList = () => {
   const { user } = useUserStorage();
@@ -18,14 +19,17 @@ const AlarmList = () => {
     initAlarms(user);
   }, []);
 
+  const disabled = !user?.hasProduct;
+
   return (
     <div>
       <h3>AlarmList</h3>
-      <CreateAlarm />
+      {disabled && <Info text="구매한 유저만 알람 변경이 가능합니다." />}
+      <CreateAlarm disabled={disabled} />
       <br />
       {alarms.map((alarm, index) => (
         <div key={index} className="alarm-wrapper">
-          {alarm.id} <AlarmToggle alarm={alarm} /> <DeleteAlarm alarm={alarm} />
+          {alarm.id} <AlarmToggle alarm={alarm} disabled={disabled} /> <DeleteAlarm alarm={alarm} disabled={disabled} />
         </div>
       ))}
     </div>

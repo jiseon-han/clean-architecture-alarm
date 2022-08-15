@@ -3,6 +3,6 @@ import { fakeApi } from './api';
 
 export function useAuth(): AuthenticationService {
   return {
-    auth: (id: string, password: string) => fakeApi({ id, password }),
+    auth: (id: string, password: string) => fakeApi({ id, password, hasProduct: id.includes('product') }),
   };
 }
