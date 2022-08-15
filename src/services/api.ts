@@ -1,5 +1,5 @@
 import { User } from '../domain/user';
-import { alarms } from './fakeData';
+import { returnAlarmsOfUser } from './fakeData';
 
 export function fakeApi<TResponse>(response: TResponse): Promise<TResponse> {
   return new Promise((res) => setTimeout(() => res(response), 450));
@@ -8,7 +8,7 @@ export function fakeApi<TResponse>(response: TResponse): Promise<TResponse> {
 export async function getAlarmsApi(user: User) {
   //fake call
   await sleep(1000);
-  return alarms;
+  return returnAlarmsOfUser(user);
 }
 
 export function sleep(timeout: number) {
